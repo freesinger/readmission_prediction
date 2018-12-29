@@ -33,7 +33,9 @@ df = df.iloc[new_ID]
 df['readmitted'] = df['readmitted'].replace('>30', 2)
 df['readmitted'] = df['readmitted'].replace('<30', 1)
 df['readmitted'] = df['readmitted'].replace('NO', 0)
-cnt0, cnt1, cnt2 = 0, 0, 0
+
+# cnt0, cnt1, cnt2 = 0, 0, 0
+'''
 for i in df['readmitted']:
     if i == 0:
         cnt0 += 1
@@ -42,6 +44,7 @@ for i in df['readmitted']:
     else:
         cnt2 += 1
 print(cnt0, cnt1, cnt2)
+'''
 # 53208 11357 88753
 
 # calculate change times through 23 kinds of medicines
