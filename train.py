@@ -74,13 +74,14 @@ plt.barh(range(len(most_imp_features)), most_imp_features.Importance, align='cen
 plt.yticks(range(len(most_imp_features)), most_imp_features.Feature, fontsize=14)
 plt.xlabel('Importance')
 plt.title('XGBoost -- Top 10 Important Features')
-plt.savefig('./xgboost.jpg')
+# plt.savefig('./xgboost.jpg')
 # plt.show()
+plt.close()
 
 # Random  forest
 print('use random-forest model:')
 
-forest = RandomForestClassifier(n_estimators=10, max_depth=25, criterion="entropy", min_samples_split=10)
+forest = RandomForestClassifier(n_estimators=100, max_depth=25, criterion="entropy", min_samples_split=2)
 print("Cross Validation Score: ", np.mean(cross_val_score(forest, X_train, Y_train, cv=10)))
 forest.fit(X_train, Y_train)
 
@@ -99,5 +100,6 @@ plt.barh(range(len(most_imp_features)), most_imp_features.Importance, align='cen
 plt.yticks(range(len(most_imp_features)), most_imp_features.Feature, fontsize=14)
 plt.xlabel('Importance')
 plt.title('Random Forest -- Top 10 Important Features')
-plt.savefig('./random-forest.jpg')
+# plt.savefig('./random-forest.jpg')
 # plt.show()
+
