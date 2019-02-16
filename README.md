@@ -1,11 +1,13 @@
-# 程序运行说明
+# Readmission Prediction
+[![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
+![size](https://img.shields.io/github/repo-size/freesinger/Readmission_Prediction.svg?style=plastic)
+![stars](https://img.shields.io/github/stars/freesinger/Readmission_Prediction.svg?style=social)
+## 1. Environments
 
-## 环境
+`python3.6`
 
-python3.6
-
-**库**：
-
+## 2. Libraries
+```
 - numpy
 - pandas
 - scipy
@@ -13,15 +15,17 @@ python3.6
 - XGBoost
 - scikit-learn
 - matplotlib
+```
 
-## 文件说明
+## 3. Files
 
-`preprocess.py` : 用于数据预处理，运行后在 `data` 目录下生成预处理后的数据 `preprocessed_data.csv`
+`preprocess.py`: used for preprocessing data, generate the processed data file `preprocessed_data.csv` which saved in folder `data`.
 
-`train.py`: 用于训练与输出结果，采用了 `xgboost` 和 `Random Forest` 两种进行测试。运行后会在屏幕中输出相应的准确率、混淆矩阵等。
+`train.py`: used for training and output, test models are `XGBoost` and `Random Forest`. Accuracy, confusion matrix and overall report of models will shown after running.
 
-## 运行说明
+## 4. Run
 
-在data目录下已经存放以前提前预处理好的数据 `preprocessed_data.csv`。可以直接运行`python train.py` 命令即可。
-
-如果需要也执行预处理操作，运行 `python preprocess.py` 即可，运行后在 `data` 目录下生成预处理后的数据 `preprocessed_data.csv`。（需要将原来的数据文件`diabetic_data.csv` 存放到 `data` 目录下。）
+```
+>_ python3.6 preprocess.py
+>_ python3.6 train.py
+```
