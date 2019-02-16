@@ -2,6 +2,7 @@
 [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 ![size](https://img.shields.io/github/repo-size/freesinger/Readmission_Prediction.svg?style=plastic)
 ![stars](https://img.shields.io/github/stars/freesinger/Readmission_Prediction.svg?style=social)
+![license](https://img.shields.io/github/license/freesinger/Readmission_Prediction.svg?style=plastic)
 ## 1. Environments
 
 `python3.6`
