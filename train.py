@@ -1,15 +1,14 @@
 import numpy as np
 import pandas as pd
 import warnings
-from imblearn.over_sampling import SMOTE
 import xgboost as xgb
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import cross_val_score
-from sklearn.metrics import accuracy_score
+import seaborn as sns
 import matplotlib.pyplot as plt
+
+from imblearn.over_sampling import SMOTE
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split, cross_val_score
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report, f1_score
 
 warnings.filterwarnings('ignore')
 
@@ -59,51 +58,76 @@ X_train = pd.DataFrame(X_train, columns=list(X_train_old.columns))
 
 print("nums of train/test set: ", len(X_train), len(X_test), len(Y_train), len(Y_test))
 
-# XGboost
-print('use xgboost model:')
+#-------- XGboost ---------#
+print('--- XGBoost model ---')
 xg_reg = xgb.XGBClassifier()
 
 print("Cross Validation score: ", np.mean(cross_val_score(xg_reg, X_train, Y_train, cv=10)))  # 10-fold 交叉验证
 xg_reg.fit(X_train, Y_train)
+
 Y_test_predict = xg_reg.predict(X_test)
-print("Accuracy: ", accuracy_score(Y_test, Y_test_predict))
-print("Confusion matrix: \n", confusion_matrix(Y_test, Y_test_predict))
+acc = accuracy_score(Y_test, Y_test_predict)
+mat = confusion_matrix(Y_test, Y_test_predict)
+f1 = f1_score(Y_test, Y_test_predict, average='weighted')
+print("Accuracy: ", acc)
+print("Confusion matrix: \n", mat)
 print('Overall report: \n', classification_report(Y_test, Y_test_predict))
+
+# Save confusion matrix figure
+plt.figure(figsize=(8, 8))
+sns.set(font_scale=1.4)
+sns.heatmap(mat, square=True, annot=True, cmap='Blues')
+plt.xlabel('True Value')
+plt.ylabel('Predict Value')
+plt.title('Random Forest\n ACC: {0:.2f}%\n F1: {1:.2f}%'.format(acc * 100, f1 * 100))
+plt.savefig('./images/XGBoost.png')
 
 feature_names = X_train.columns
 feature_imports = xg_reg.feature_importances_
 most_imp_features = pd.DataFrame([f for f in zip(feature_names, feature_imports)],
                                  columns=["Feature", "Importance"]).nlargest(10, "Importance")
 most_imp_features.sort_values(by="Importance", inplace=True)
-plt.figure(figsize=(20, 12))
+plt.figure(figsize=(19, 11))
 plt.barh(range(len(most_imp_features)), most_imp_features.Importance, align='center', alpha=0.8)
 plt.yticks(range(len(most_imp_features)), most_imp_features.Feature, fontsize=14)
 plt.xlabel('Importance')
 plt.title('XGBoost -- Top 10 Important Features')
-plt.savefig('./xgboost.jpg')
+plt.savefig('./images/XGBfeatImportance.jpg')
 # plt.show()
 
-# random  forest
-print('use random-forest model:')
+# ------- RF --------#
+print('--- Random-forest model ---')
 
 forest = RandomForestClassifier(n_estimators=100, max_depth=120, criterion="entropy")
 print("Cross Validation Score: ", np.mean(cross_val_score(forest, X_train, Y_train, cv=10)))
 forest.fit(X_train, Y_train)
 
 Y_test_predict = forest.predict(X_test)
-print("Accuracy: ", accuracy_score(Y_test, Y_test_predict))
-print("Confusion matrix: \n", confusion_matrix(Y_test, Y_test_predict))
+acc = accuracy_score(Y_test, Y_test_predict)
+mat = confusion_matrix(Y_test, Y_test_predict)
+f1 = f1_score(Y_test, Y_test_predict, average='weighted')
+print("Accuracy: ", acc)
+print("Confusion matrix: \n", mat)
 print('Overall report: \n', classification_report(Y_test, Y_test_predict))
+
+# Save confusion matrix figure
+plt.figure(figsize=(8, 8))
+sns.set(font_scale=1.4)
+sns.heatmap(mat, square=True, annot=True, cmap='Reds')
+plt.xlabel('True Value')
+plt.ylabel('Predict Value')
+plt.title('Random Forest\n ACC: {0:.2f}%\n F1: {1:.2f}%'.format(acc * 100, f1 * 100))
+plt.savefig('./images/randomForest.png')
 
 feature_names = X_train.columns
 feature_imports = forest.feature_importances_
 most_imp_features = pd.DataFrame([f for f in zip(feature_names, feature_imports)],
                                  columns=["Feature", "Importance"]).nlargest(10, "Importance")
 most_imp_features.sort_values(by="Importance", inplace=True)
-plt.figure(figsize=(20, 12))
+plt.figure(figsize=(19, 11))
 plt.barh(range(len(most_imp_features)), most_imp_features.Importance, align='center', alpha=0.8)
 plt.yticks(range(len(most_imp_features)), most_imp_features.Feature, fontsize=14)
 plt.xlabel('Importance')
 plt.title('Random Forest -- Top 10 Important Features')
-plt.savefig('./random-forest.jpg')
+plt.savefig('./images/RFfeatImportance.jpg')
 # plt.show()
