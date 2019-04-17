@@ -38,11 +38,15 @@ The dataset represents 10 years (1999-2008) of clinical care at 130 US hospitals
 
 ## 3. Files
 
+Readmission prediction task can be concluded by the figure below:
+
+![](images/task.png)
+
 `preprocess.py`: used for preprocessing data, generate the processed data file `preprocessed_data.csv` which saved in folder `data`.
 
 `train.py`: used for training and output, test models are `XGBoost` and `Random Forest`. Accuracy, confusion matrix and overall report of models will shown after running.
 
-## 4. Run
+## 4. Usage
 
 ```
 >_ python3.6 preprocess.py
