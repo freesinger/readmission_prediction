@@ -54,17 +54,21 @@ The dataset represents 10 years (1999-2008) of clinical care at 130 US hospitals
 ### XGBoost
 
 Confusion matrix:
+
 ![xgboost](./images/XGBoost.png)
 
 Top 10 importent features:
+
 ![](images/XGBfeatImportance.jpg)
 
 ### Random Forest
 
 Confusion matrix:
+
 ![](images/randomForest.png)
 
 Top 10 important features:
+
 ![](images/RFfeatImportance.jpg)
 
 ## 6. License
