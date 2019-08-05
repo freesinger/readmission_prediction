@@ -77,7 +77,5 @@ Top 10 important features:
 ![](images/RFfeatImportance.jpg)
 
 ## 6. License
-[MIT](https://github.com/freesinger/Readmission_Prediction/blob/master/LICENSE).
-
 
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffreesinger%2Freadmission_prediction.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffreesinger%2Freadmission_prediction?ref=badge_large)
