@@ -4,6 +4,7 @@
 ![size](https://img.shields.io/github/repo-size/freesinger/Readmission_Prediction.svg?style=plastic)
 ![stars](https://img.shields.io/github/stars/freesinger/Readmission_Prediction.svg?style=social)
 ![license](https://img.shields.io/github/license/freesinger/Readmission_Prediction.svg?style=plastic)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffreesinger%2Freadmission_prediction.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffreesinger%2Freadmission_prediction?ref=badge_shield)
 
 ## 1. Dependencies
 
@@ -77,3 +78,6 @@ Top 10 important features:
 
 ## 6. License
 [MIT](https://github.com/freesinger/Readmission_Prediction/blob/master/LICENSE).
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Ffreesinger%2Freadmission_prediction.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Ffreesinger%2Freadmission_prediction?ref=badge_large)
